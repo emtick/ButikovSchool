@@ -1,0 +1,72 @@
+﻿<Window x:Class="bpraktika.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bpraktika"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="96*"/>
+            <ColumnDefinition Width="277*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="1" Background="AntiqueWhite" x:Name="PDG" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding emtickView}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя ученика" Binding="{Binding Name}" IsReadOnly="True" x:Name="nameYc"/>
+                <DataGridTextColumn Header="Фамилия ученика" Binding="{Binding Surname}" IsReadOnly="True" x:Name="famYc"/>
+                <DataGridTextColumn Header="Класс" Binding="{Binding Clas}" IsReadOnly="True" x:Name="clasyc"/>
+                <DataGridTextColumn Header="Колиечество пропусков" Binding="{Binding Propuski}" IsReadOnly="True" x:Name="propYc"/>
+                <DataGridTemplateColumn Header="Изменение" Visibility="Hidden" x:Name="cngcolumn">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="chgbttn" Content="Изменить" Click="chgbttn_Click" Background="Beige"/> 
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Удаление" Width="100" Visibility="Hidden" x:Name="delcolumn">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="delbtn" Content="Удалить" Click="delbtn_Click" Background="Beige"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel VerticalAlignment="Bottom" Grid.Column="1" Height="60" Background="BurlyWood" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Поиск по имени" FontSize="20"/>
+                <TextBox x:Name="tbx" Width="150" Height="32" HorizontalAlignment="Left" TextChanged="tbx_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text=" По фамилии" FontSize="20" HorizontalAlignment="Center"/>
+                <TextBox x:Name="tbx1" Width="150" Height="32" HorizontalAlignment="Center" TextChanged="tbx1_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Поиск по классу" FontSize="20" HorizontalAlignment="Center"/>
+                <TextBox x:Name="tbx2" Width="150" Height="32" HorizontalAlignment="Center" TextChanged="tbx2_TextChanged"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Background="AliceBlue"  Orientation="Vertical" Width="auto">
+            <Button x:Name="admbtт" Content="Я админисратор" Height="50" Background="Beige" Margin="10" Click="admbtт_Click"/>
+            <TextBlock x:Name="lg" Text="Логин" HorizontalAlignment="Center" Visibility="Hidden"/>
+            <TextBox x:Name="ltbx" Height="15" Width="70" HorizontalAlignment="Center" IsReadOnly="True" Visibility="Hidden"/>
+            <TextBlock x:Name="ps" Text="Пароль" HorizontalAlignment="Center" Visibility="Hidden"/>
+            <TextBox x:Name="ptbx" Height="15" Width="70" HorizontalAlignment="Center" IsReadOnly="True" Visibility="Hidden"/>
+            <Button x:Name="login1" Content="Войти" Background="Beige" Width="70" Margin="10" Visibility="Hidden" Click="login1_Click"/>
+            <StackPanel x:Name="admpanel" Height="264" Visibility="Hidden">
+                <TextBlock Text="Имя"  TextWrapping="Wrap"/>
+                <TextBox x:Name="adName"  TextWrapping="Wrap"/>
+                <TextBlock Text="Фамилия" TextWrapping="Wrap"/>
+                <TextBox x:Name="adSurname"/>
+                <TextBlock Text="Класс"/>
+                <TextBox x:Name="adKlas" TextWrapping="Wrap"/>
+                <TextBlock Text="Кол-во пропусков"/>
+                <TextBox x:Name="adPropuski" TextWrapping="Wrap"/>
+                <Button x:Name="addbtn" Content="Добавить" Background="Beige" Click="addbtn_Click"/>
+                <Button x:Name="exit" Content="Выйти" Background="Beige" Click="exit_Click" Margin="50" Visibility="Hidden"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>
